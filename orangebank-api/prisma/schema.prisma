@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  cpf       String    @unique
+  birthDate DateTime
+  accounts  Account[]
+  investments Investment[]
+  fixedIncomeInvestments  FixedIncomeInvestment[]
+}
+
+enum AccountType {
+  CHECKING
+  INVESTMENT
+}
+
+model Account {
+  id        String       @id @default(uuid())
+  userId    String
+  type      AccountType
+  balance   Float        @default(0)
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+}
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAW
+  TRANSFER
+  BUY
+  SELL
+}
+
+model Transaction {
+  id          String          @id @default(uuid())
+  accountId   String
+  type        TransactionType
+  amount      Float
+  createdAt   DateTime        @default(now())
+  account     Account         @relation(fields: [accountId], references: [id], onDelete: Cascade)
+}
+
+model Asset {
+  id           String        @id @default(uuid())
+  symbol       String        @unique
+  name         String
+  sector       String
+  currentPrice Float
+  dailyVariation Float
+  investments  Investment[]
+}
+
+model Investment {
+  id           String   @id @default(uuid())
+  userId       String
+  assetId      String
+  quantity     Int
+  averagePrice Float
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  asset        Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+}
+
+enum FixedIncomeType {
+  CDB
+  TESOURO_DIRETO
+}
+
+enum RateType {
+  PRE
+  POS
+}
+
+model FixedIncome {
+  id                String          @id @default(uuid())
+  name              String
+  type              FixedIncomeType
+  rate              Float
+  rateType          RateType
+  maturity          DateTime
+  minimumInvestment Float
+  investments       FixedIncomeInvestment[]
+}
+
+model FixedIncomeInvestment {
+  id              String       @id @default(uuid())
+  userId          String
+  fixedIncomeId   String
+  investedAmount  Float
+  investedAt      DateTime     @default(now())
+
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fixedIncome     FixedIncome  @relation(fields: [fixedIncomeId], references: [id], onDelete: Cascade)
+}
