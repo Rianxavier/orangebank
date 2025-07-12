@@ -5,6 +5,7 @@ export class User {
     public readonly id: string,
     public name: string,
     public email: string,
+    public password: string,
     public cpf: string,
     public birthDate: Date,
     public accounts?: Account[],

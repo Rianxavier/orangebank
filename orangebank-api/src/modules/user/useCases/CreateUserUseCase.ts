@@ -7,6 +7,7 @@ import { CreateUserDTO } from '../dtos/CreateUserDTO';
 import { UserRepository } from '../repositories/UserRepository';
 import { User } from '@prisma/client';
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class CreateUserUseCase {
@@ -25,6 +26,11 @@ export class CreateUserUseCase {
     const existCpfUser = await this.userRepository.findByEmail(data.email);
     if (existCpfUser) throw new ConflictException('CPF already registered');
 
-    return this.userRepository.create(data);
+    const { password, ...rest } = data;
+
+    // Fazendo hash da senha
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    return this.userRepository.create({ ...rest, password: hashedPassword });
   }
 }
