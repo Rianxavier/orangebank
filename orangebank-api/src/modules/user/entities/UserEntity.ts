@@ -1,3 +1,5 @@
+import { Account } from 'src/modules/account/entities/AccountEntity';
+
 export class User {
   constructor(
     public readonly id: string,
@@ -5,5 +7,6 @@ export class User {
     public email: string,
     public cpf: string,
     public birthDate: Date,
+    public accounts?: Account[],
   ) {}
 }
