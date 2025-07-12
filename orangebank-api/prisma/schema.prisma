@@ -29,6 +29,7 @@ model Account {
   userId    String
   type      AccountType
   balance   Float        @default(0)
+  accountNumber Int @unique
   user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   transactions Transaction[]
 }

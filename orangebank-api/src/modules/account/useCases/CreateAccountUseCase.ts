@@ -3,6 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { AccountNumberGeneratorService } from 'src/infra/services/AccountNumberGeneratorService';
 import { UserRepository } from 'src/modules/user/repositories/UserRepository';
 import { CreateAccountDTO } from '../dtos/CreateAccountDTO';
 import { AccountRepository } from '../repositories/AccountRepository';
@@ -12,6 +13,7 @@ export class CreateAccountUseCase {
   constructor(
     private readonly accountRepository: AccountRepository,
     private readonly userRepository: UserRepository,
+    private readonly accountNumberGenerator: AccountNumberGeneratorService,
   ) {}
 
   async execute(account: CreateAccountDTO) {
@@ -28,6 +30,11 @@ export class CreateAccountUseCase {
     if (alreadyHasAccount)
       throw new ConflictException(`User already has a ${account.type} account`);
 
-    return this.accountRepository.create(account);
+    const accountNumber = await this.accountNumberGenerator.generate();
+
+    return this.accountRepository.create({
+      ...account,
+      accountNumber,
+    });
   }
 }

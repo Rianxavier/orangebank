@@ -3,6 +3,7 @@ export class Account {
     public readonly id: string,
     public readonly userId: string,
     public type: 'CHECKING' | 'INVESTMENT',
+    public readonly accountNumber: number,
     public balance: number,
   ) {}
 }

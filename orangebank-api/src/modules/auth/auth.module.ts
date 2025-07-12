@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { InfraModule } from 'src/infra/infra.module';
-import { LoginUseCase } from './useCases/LoginUseCase';
-import { AuthController } from './controllers/AuthController';
 import { JwtModule } from '@nestjs/jwt';
+import { InfraModule } from 'src/infra/infra.module';
 import { UserModule } from '../user/user.module';
+import { AuthController } from './controllers/AuthController';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { LoginUseCase } from './useCases/LoginUseCase';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { UserModule } from '../user/user.module';
     UserModule,
   ],
   controllers: [AuthController],
-  providers: [LoginUseCase],
+  providers: [JwtStrategy, LoginUseCase],
 })
 export class AuthModule {}

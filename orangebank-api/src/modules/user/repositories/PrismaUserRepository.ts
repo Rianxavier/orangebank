@@ -42,4 +42,11 @@ export class PrismaUserRepository implements UserRepository {
   async findByCpf(cpf: string): Promise<User | null> {
     return this.prisma.user.findUnique({ where: { cpf } });
   }
+
+  async findByIdWithAccounts(id: string): Promise<User | null> {
+    return this.prisma.user.findUnique({
+      where: { id },
+      include: { accounts: true },
+    });
+  }
 }

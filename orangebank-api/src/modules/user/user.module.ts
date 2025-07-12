@@ -4,6 +4,8 @@ import { PrismaUserRepository } from './repositories/PrismaUserRepository';
 import { CreateUserUseCase } from './useCases/CreateUserUseCase';
 import { InfraModule } from 'src/infra/infra.module';
 import { UserRepository } from './repositories/UserRepository';
+import { AccountRepository } from '../account/repositories/AccountRepository';
+import { PrismaAccountRepository } from '../account/repositories/PrismaAccountRepository';
 
 @Module({
   imports: [InfraModule],
@@ -13,6 +15,10 @@ import { UserRepository } from './repositories/UserRepository';
     {
       provide: UserRepository,
       useClass: PrismaUserRepository,
+    },
+    {
+      provide: AccountRepository,
+      useClass: PrismaAccountRepository,
     },
   ],
   exports: [UserRepository],
