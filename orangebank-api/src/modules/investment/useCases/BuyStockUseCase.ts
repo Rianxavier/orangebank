@@ -97,6 +97,8 @@ export class BuyStockUseCase {
         accountId: account.id,
         amount: -totalCost,
         type: TransactionType.BUY,
+        quantity: data.quantity,
+        symbol: stock.symbol,
       },
     });
 

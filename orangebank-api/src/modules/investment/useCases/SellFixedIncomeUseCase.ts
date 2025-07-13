@@ -73,6 +73,8 @@ export class SellFixedIncomeUseCase {
         accountId: account.id,
         amount: netValue,
         type: TransactionType.SELL,
+        quantity: 1,
+        symbol: investment.fixedIncomeId,
       },
     });
 

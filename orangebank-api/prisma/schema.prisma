@@ -47,6 +47,8 @@ model Transaction {
   accountId   String
   type        TransactionType
   amount      Float
+  quantity    Int?            
+  symbol      String?         
   createdAt   DateTime        @default(now())
   account     Account         @relation(fields: [accountId], references: [id], onDelete: Cascade)
 }

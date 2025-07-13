@@ -87,6 +87,8 @@ export class SellStockUseCase {
         accountId: account.id,
         amount: netValue,
         type: TransactionType.SELL,
+        quantity: data.quantity,
+        symbol: stock.symbol,
       },
     });
 

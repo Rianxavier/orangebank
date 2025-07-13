@@ -81,6 +81,8 @@ export class BuyFixedIncomeUseCase {
         accountId: account.id,
         amount: -data.amount,
         type: TransactionType.BUY,
+        quantity: 1,
+        symbol: fixed.id,
       },
     });
 
