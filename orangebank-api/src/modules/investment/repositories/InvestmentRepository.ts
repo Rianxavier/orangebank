@@ -22,4 +22,6 @@ export abstract class InvestmentRepository {
   ): Promise<FixedIncomeInvestment[]>;
 
   abstract delete(id: string): Promise<void>;
+
+  abstract deleteFixedIncome(id: string): Promise<void>;
 }
