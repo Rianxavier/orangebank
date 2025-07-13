@@ -5,6 +5,7 @@ import { TransactionController } from './controllers/TransactionController';
 import { PrismaTransactionRepository } from './repositories/PrismaTransactionRepository';
 import { TransactionRepository } from './repositories/TransactionRepository';
 import { CreateTransferUseCase } from './UseCases/CreateTransferUseCase';
+import { GetUserTransactionsUseCase } from './UseCases/GetUserTransactionUseCase';
 
 @Module({
   controllers: [TransactionController],
@@ -12,6 +13,7 @@ import { CreateTransferUseCase } from './UseCases/CreateTransferUseCase';
     PrismaService,
     CreateDepositUseCase,
     CreateTransferUseCase,
+    GetUserTransactionsUseCase,
     {
       provide: TransactionRepository,
       useClass: PrismaTransactionRepository,
