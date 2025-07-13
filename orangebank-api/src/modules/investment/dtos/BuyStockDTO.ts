@@ -1,4 +1,4 @@
-import { IsString, IsUUID, IsInt, Min } from 'class-validator';
+import { IsInt, IsPositive, IsString, IsUUID } from 'class-validator';
 
 export class BuyStockDTO {
   @IsUUID()
@@ -8,6 +8,6 @@ export class BuyStockDTO {
   symbol: string;
 
   @IsInt()
-  @Min(1)
+  @IsPositive()
   quantity: number;
 }
