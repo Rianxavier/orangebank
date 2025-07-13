@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/infra/prisma/PrismaService';
-import { Investment } from '@prisma/client';
+import { FixedIncomeInvestment, Investment } from '@prisma/client';
 import { InvestmentRepository } from './InvestmentRepository';
 
 @Injectable()
@@ -21,6 +21,12 @@ export class PrismaInvestmentRepository implements InvestmentRepository {
 
   async create(data: Omit<Investment, 'id'>): Promise<Investment> {
     return this.prisma.investment.create({ data });
+  }
+
+  async createFixedIncome(
+    data: Omit<FixedIncomeInvestment, 'id' | 'investedAt'>,
+  ): Promise<FixedIncomeInvestment> {
+    return this.prisma.fixedIncomeInvestment.create({ data });
   }
 
   async update(id: string, data: Partial<Investment>): Promise<Investment> {

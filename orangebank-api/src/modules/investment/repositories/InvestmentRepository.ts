@@ -1,4 +1,5 @@
-import { Investment } from '@prisma/client';
+import { FixedIncomeInvestment, Investment } from '@prisma/client';
+import { Omit } from '@prisma/client/runtime/library';
 
 export abstract class InvestmentRepository {
   abstract findByUserIdAndSymbol(
@@ -7,6 +8,10 @@ export abstract class InvestmentRepository {
   ): Promise<Investment | null>;
 
   abstract create(data: Omit<Investment, 'id'>): Promise<Investment>;
+
+  abstract createFixedIncome(
+    data: Omit<FixedIncomeInvestment, 'id' | 'investedAt'>,
+  ): Promise<FixedIncomeInvestment>;
 
   abstract update(id: string, data: Partial<Investment>): Promise<Investment>;
 

@@ -6,14 +6,17 @@ import { InvestmentRepository } from './repositories/InvestmentRepository';
 import { PrismaInvestmentRepository } from './repositories/PrismaInvestmentRepository';
 import { GetUserStocksUseCase } from './useCases/GetUserStocksUseCase';
 import { SellStockUseCase } from './useCases/SellStockUseCase';
+import { BuyFixedIncomeUseCase } from './useCases/BuyFixedImcomeUseCase';
+import { FixedIncomeController } from './controllers/FixedIncomeController';
 
 @Module({
-  controllers: [StockController],
+  controllers: [StockController, FixedIncomeController],
   providers: [
     PrismaService,
     BuyStockUseCase,
     GetUserStocksUseCase,
     SellStockUseCase,
+    BuyFixedIncomeUseCase,
     {
       provide: InvestmentRepository,
       useClass: PrismaInvestmentRepository,
