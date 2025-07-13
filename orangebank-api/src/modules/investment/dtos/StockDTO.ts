@@ -1,6 +1,6 @@
 import { IsInt, IsPositive, IsString, IsUUID } from 'class-validator';
 
-export class BuyStockDTO {
+export class StockDTO {
   @IsUUID()
   accountId: string;
 
@@ -8,6 +8,6 @@ export class BuyStockDTO {
   symbol: string;
 
   @IsInt()
-  @IsPositive()
+  @IsPositive({ message: 'Quantity must be a positive integer' })
   quantity: number;
 }

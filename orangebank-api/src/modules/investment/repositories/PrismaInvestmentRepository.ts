@@ -35,4 +35,10 @@ export class PrismaInvestmentRepository implements InvestmentRepository {
       where: { userId },
     });
   }
+
+  async delete(id: string): Promise<void> {
+    await this.prisma.investment.delete({
+      where: { id },
+    });
+  }
 }

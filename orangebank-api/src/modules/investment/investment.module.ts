@@ -5,6 +5,7 @@ import { BuyStockUseCase } from './useCases/BuyStockUseCase';
 import { InvestmentRepository } from './repositories/InvestmentRepository';
 import { PrismaInvestmentRepository } from './repositories/PrismaInvestmentRepository';
 import { GetUserStocksUseCase } from './useCases/GetUserStocksUseCase';
+import { SellStockUseCase } from './useCases/SellStockUseCase';
 
 @Module({
   controllers: [StockController],
@@ -12,6 +13,7 @@ import { GetUserStocksUseCase } from './useCases/GetUserStocksUseCase';
     PrismaService,
     BuyStockUseCase,
     GetUserStocksUseCase,
+    SellStockUseCase,
     {
       provide: InvestmentRepository,
       useClass: PrismaInvestmentRepository,

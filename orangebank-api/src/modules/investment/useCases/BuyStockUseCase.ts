@@ -7,8 +7,8 @@ import {
 import { AccountType, TransactionType } from '@prisma/client';
 import { PrismaService } from 'src/infra/prisma/PrismaService';
 import { InvestmentRepository } from '../repositories/InvestmentRepository';
-import { BuyStockDTO } from '../dtos/BuyStockDTO';
 import assetsMock from 'src/mocks/assets-mock.json';
+import { StockDTO } from '../dtos/StockDTO';
 
 @Injectable()
 export class BuyStockUseCase {
@@ -17,7 +17,7 @@ export class BuyStockUseCase {
     private readonly prisma: PrismaService,
   ) {}
 
-  async execute(userId: string, data: BuyStockDTO) {
+  async execute(userId: string, data: StockDTO) {
     const account = await this.prisma.account.findUnique({
       where: { id: data.accountId },
     });
