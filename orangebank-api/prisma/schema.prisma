@@ -51,24 +51,17 @@ model Transaction {
   account     Account         @relation(fields: [accountId], references: [id], onDelete: Cascade)
 }
 
-model Asset {
-  id           String        @id @default(uuid())
-  symbol       String        @unique
-  name         String
-  sector       String
-  currentPrice Float
-  dailyVariation Float
-  investments  Investment[]
-}
 
 model Investment {
   id           String   @id @default(uuid())
   userId       String
-  assetId      String
+  symbol       String   
+  name         String   
+  sector       String   
   quantity     Int
   averagePrice Float
+  createdAt    DateTime @default(now())
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  asset        Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
 }
 
 enum FixedIncomeType {
@@ -81,24 +74,18 @@ enum RateType {
   POS
 }
 
-model FixedIncome {
-  id                String          @id @default(uuid())
-  name              String
-  type              FixedIncomeType
-  rate              Float
-  rateType          RateType
-  maturity          DateTime
-  minimumInvestment Float
-  investments       FixedIncomeInvestment[]
-}
 
 model FixedIncomeInvestment {
-  id              String       @id @default(uuid())
+  id              String   @id @default(uuid())
   userId          String
-  fixedIncomeId   String
+  fixedIncomeId   String 
+  name            String 
+  type            FixedIncomeType
+  rate            Float
+  rateType        RateType
+  maturity        DateTime
   investedAmount  Float
-  investedAt      DateTime     @default(now())
+  investedAt      DateTime @default(now())
 
-  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  fixedIncome     FixedIncome  @relation(fields: [fixedIncomeId], references: [id], onDelete: Cascade)
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
