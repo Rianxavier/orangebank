@@ -9,4 +9,6 @@ export abstract class InvestmentRepository {
   abstract create(data: Omit<Investment, 'id'>): Promise<Investment>;
 
   abstract update(id: string, data: Partial<Investment>): Promise<Investment>;
+
+  abstract findManyByUserId(userId: string): Promise<Investment[]>;
 }

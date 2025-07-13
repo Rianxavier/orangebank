@@ -29,4 +29,10 @@ export class PrismaInvestmentRepository implements InvestmentRepository {
       data,
     });
   }
+
+  async findManyByUserId(userId: string): Promise<Investment[]> {
+    return this.prisma.investment.findMany({
+      where: { userId },
+    });
+  }
 }
