@@ -42,6 +42,12 @@ export class PrismaInvestmentRepository implements InvestmentRepository {
     });
   }
 
+  async findUserFixedIncome(userId: string): Promise<FixedIncomeInvestment[]> {
+    return this.prisma.fixedIncomeInvestment.findMany({
+      where: { userId },
+    });
+  }
+
   async delete(id: string): Promise<void> {
     await this.prisma.investment.delete({
       where: { id },

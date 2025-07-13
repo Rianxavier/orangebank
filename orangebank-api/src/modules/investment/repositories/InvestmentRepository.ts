@@ -17,5 +17,9 @@ export abstract class InvestmentRepository {
 
   abstract findManyByUserId(userId: string): Promise<Investment[]>;
 
+  abstract findUserFixedIncome(
+    userId: string,
+  ): Promise<FixedIncomeInvestment[]>;
+
   abstract delete(id: string): Promise<void>;
 }
