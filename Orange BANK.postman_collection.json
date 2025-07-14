@@ -1,0 +1,548 @@
+{
+	"info": {
+		"_postman_id": "3f0c4075-9f44-41dc-bbc1-6f8c182cbcc9",
+		"name": "Orange BANK",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29631368"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Guilherme Kevin Mendes\",\n  \"email\": \"guilherme_mendes@pgpci.com.br\",\n  \"cpf\": \"255.270.317-84\",\n  \"password\": \"teste123\",\n  \"birthDate\": \"2001-09-04\",\n  \"createInvestmentAccount\": false\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInd User with account by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzM1NTEsImV4cCI6MTc1MjUxOTk1MX0.A2CwTE-MTgjnvxmD4NKQtqe9FxT00mY8FTnF-mFcjCc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/users/127f9aca-2a3c-4e0e-9c15-fcc0bc6e82ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"127f9aca-2a3c-4e0e-9c15-fcc0bc6e82ec"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTIzNDE4NjAsImV4cCI6MTc1MjQyODI2MH0.xQm0SNW3GI86NBgFzgFLwFAtTD9_qZM65CVUs6Ob4OA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"127f9aca-2a3c-4e0e-9c15-fcc0bc6e82ec\",\r\n  \"type\": \"CHECKING\" // \"CHECKING\" ou \"INVESTMENT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Deposit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzA2MjksImV4cCI6MTc1MjUxNzAyOX0.HNqoSP8fhe64w-FBPuzSURhjx1aGwxsQgVzuQnHlZ1Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"accountId\": \"83d43c07-a16e-4727-a2bd-d11d0c011c20\",\r\n  \"amount\": 10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/transactions/deposit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzA2MjksImV4cCI6MTc1MjUxNzAyOX0.HNqoSP8fhe64w-FBPuzSURhjx1aGwxsQgVzuQnHlZ1Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sourceAccountId\": \"83d43c07-a16e-4727-a2bd-d11d0c011c20\",\r\n  \"accountNumber\": 179413,\r\n  \"amount\": 10000.00\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/transactions/transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions by user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzM1NTEsImV4cCI6MTc1MjUxOTk1MX0.A2CwTE-MTgjnvxmD4NKQtqe9FxT00mY8FTnF-mFcjCc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Income Tax Report by userId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzM1NTEsImV4cCI6MTc1MjUxOTk1MX0.A2CwTE-MTgjnvxmD4NKQtqe9FxT00mY8FTnF-mFcjCc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/reports/tax/127f9aca-2a3c-4e0e-9c15-fcc0bc6e82ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reports",
+								"tax",
+								"127f9aca-2a3c-4e0e-9c15-fcc0bc6e82ec"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Investment",
+			"item": [
+				{
+					"name": "Stock",
+					"item": [
+						{
+							"name": "Buy Stock",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTIzNDE4NjAsImV4cCI6MTc1MjQyODI2MH0.xQm0SNW3GI86NBgFzgFLwFAtTD9_qZM65CVUs6Ob4OA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"accountId\": \"1be0221e-47fe-409e-a6b4-703f157d2f02\",\r\n  \"symbol\": \"ENER3\",\r\n  \"quantity\": 4\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/stocks/buy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stocks",
+										"buy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sell Stock",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzM1NTEsImV4cCI6MTc1MjUxOTk1MX0.A2CwTE-MTgjnvxmD4NKQtqe9FxT00mY8FTnF-mFcjCc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"accountId\": \"1be0221e-47fe-409e-a6b4-703f157d2f02\",\r\n  \"symbol\": \"ENER3\",\r\n  \"quantity\": 1\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/stocks/sell",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stocks",
+										"sell"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Stocks",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTIzNDE4NjAsImV4cCI6MTc1MjQyODI2MH0.xQm0SNW3GI86NBgFzgFLwFAtTD9_qZM65CVUs6Ob4OA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/stocks/buy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stocks",
+										"buy"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fixed Income",
+					"item": [
+						{
+							"name": "Buy Fixed Income",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzA2MjksImV4cCI6MTc1MjUxNzAyOX0.HNqoSP8fhe64w-FBPuzSURhjx1aGwxsQgVzuQnHlZ1Y",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"accountId\": \"1be0221e-47fe-409e-a6b4-703f157d2f02\",\r\n  \"fixedIncomeId\": \"TD002\",\r\n  \"amount\": 2000\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/fixed-income/buy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"fixed-income",
+										"buy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Fixed Income",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzM1NTEsImV4cCI6MTc1MjUxOTk1MX0.A2CwTE-MTgjnvxmD4NKQtqe9FxT00mY8FTnF-mFcjCc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/fixed-income/buy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"fixed-income",
+										"buy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sell User Fixed Income",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjdmOWFjYS0yYTNjLTRlMGUtOWMxNS1mY2MwYmM2ZTgyZWMiLCJlbWFpbCI6InJpYW5AZW1haWwuY29tIiwibmFtZSI6IlJpYW4gWGF2aWVyIiwiY3BmIjoiMDg4LjQwNS42NzUtOTMiLCJpYXQiOjE3NTI0MzM1NTEsImV4cCI6MTc1MjUxOTk1MX0.A2CwTE-MTgjnvxmD4NKQtqe9FxT00mY8FTnF-mFcjCc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/fixed-income/43c28633-db0a-42d6-9e87-f0a1f64ef91a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"fixed-income",
+										"43c28633-db0a-42d6-9e87-f0a1f64ef91a"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"rian@email.com\",\r\n  \"password\": \"rian123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
